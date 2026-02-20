@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorena: My Eternal Queen ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* --- Royal Design System Variables --- */
+        :root {
+            --gold: #d4af37;
+            --deep-rose: #2d0b0b;
+            --soft-gold: #fdf4c1;
+            --glass: rgba(255, 255, 255, 0.08);
+            --premium-shadow: 0 25px 60px rgba(0,0,0,0.85);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f7d794 50%, #d4af37 100%);
+            --rose-glow: rgba(255, 20, 147, 0.3);
+            --bg-dark: #050505;
+            --bg-gradient: radial-gradient(ellipse at center, #000 0%, #0a0a0a 50%, #000 100%);
+        }
+
+        /* --- Global Resets and Base Styles --- */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            overflow-x: hidden;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* --- Enhanced Background System --- */
+        #bg-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -2; 
+            width: 100%; 
+            height: 100%; 
+        }
+
+        .vignette {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, transparent 0%, transparent 40%, rgba(0,0,0,0.95) 100%);
+            pointer-events: none; 
+            z-index: 1;
+        }
+
+        /* --- Royal Lock Screen --- */
+        #lockScreen {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: linear-gradient(135deg, #050505 0%, #1a0000 50%, #050505 100%);
+            z-index: 10000; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            transition: 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .royal-crest {
+            font-size: 6rem; 
+            color: var(--gold); 
+            text-shadow: 0 0 40px var(--gold);
+            animation: pulse 2s infinite; 
+            margin-bottom: 30px;
+        }
+
+        @keyframes pulse { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.05); } 
+        }
+        
+        .gold-input {
+            background: rgba(0,0,0,0.5); 
+            border: 2px solid transparent;
+            background-clip: padding-box; 
+            border-radius: 15px;
+            padding: 20px 30px; 
+            color: var(--soft-gold); 
+            font-family: 'Cinzel'; 
+            font-size: 1.8rem; 
+            text-align: center; 
+            outline: none; 
+            width: 350px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            backdrop-filter: blur(20px);
+            box-shadow: var(--premium-shadow);
+        }
+
+        .gold-input:focus { 
+            width: 450px; 
+            border-image: var(--gradient-gold) 1; 
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6); 
+            transform: scale(1.02);
+        }
+
+        /* --- Enhanced Navigation --- */
+        nav {
+            position: sticky; 
+            top: 30px; 
+            z-index: 1000; 
+            display: inline-flex;
+            background: rgba(15, 15, 15, 0.9); 
+            backdrop-filter: blur(25px);
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            margin-bottom: 60px; 
+            box-shadow: var(--premium-shadow);
+        }
+
+        nav button {
+            background: transparent; 
+            border: none; 
+            padding: 18px 35px; 
+            margin: 0 5px;
+            cursor: pointer; 
+            font-family: 'Cinzel'; 
+            color: #aaa; 
+            font-weight: 400;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            position: relative; 
+            overflow: hidden;
+        }
+
+        nav button::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 100%; 
+            height: 100%;
+            background: var(--gradient-gold); 
+            opacity: 0.2; 
+            transition: 0.5s;
+        }
+
+        nav button:hover::before, nav button.active-nav::before { 
+            left: 0; 
+        }
+
+        nav button.active-nav, nav button:hover { 
+            color: var(--gold); 
+            text-shadow: 0 0 20px var(--gold); 
+            transform: translateY(-3px);
+        }
+
+        /* --- Luxury Content Cards --- */
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 2; 
+            padding: 0 20px 120px; 
+        }
+
+        .card {
+            background: var(--glass); 
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 100px 60px; 
+            margin-bottom: 60px; 
+            display: none; 
+            border-radius: 25px;
+            backdrop-filter: blur(20px); 
+            box-shadow: var(--premium-shadow);
+            animation: cardSlideIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card.active { 
+            display: block; 
+        }
+
+        @keyframes cardSlideIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(60px) scale(0.95); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            } 
+        }
+
+        /* --- Enhanced Vault System --- */
+        .vault-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px; 
+        }
+
+        .envelope {
+            background: rgba(212, 175, 55, 0.08); 
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 50px 30px; 
+            cursor: pointer; 
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+        }
+
+        .envelope::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background: var(--gradient-gold); 
+            opacity: 0; 
+            transition: 0.6s;
+        }
+
+        .envelope:hover::before { 
+            opacity: 0.15; 
+        }
+
+        .envelope:hover { 
+            background: rgba(212, 175, 55, 0.15); 
+            color: black; 
+            transform: translateY(-15px) scale(1.02); 
+            border-color: var(--gold);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+        }
+
+        .envelope i { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+            opacity: 0.8; 
+            color: var(--gold);
+        }
+
+        .envelope h4 { 
+            font-family: 'Cinzel'; 
+            font-size: 1.3rem; 
+            margin-bottom: 15px; 
+            color: white;
+        }
+        
+        .envelope:hover h4, .envelope:hover p {
+            color: white;
+        }
+
+        /* --- Enhanced Letter Popup --- */
+        .letter-popup {
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 90%; 
+            max-width: 700px; 
+            max-height: 80vh; 
+            overflow-y: auto;
+            background: linear-gradient(135deg, #fffef8 0%, #f8f4e6 100%); 
+            color: #2c1810;
+            padding: 60px; 
+            border-radius: 25px; 
+            z-index: 10001; 
+            display: none;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.9); 
+            font-family: 'Dancing Script'; 
+            font-size: 1.8rem; 
+            line-height: 1.6; 
+            backdrop-filter: blur(20px);
+            animation: letterReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes letterReveal {
+            from { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.7) rotateX(90deg); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1) rotateX(0deg); 
+            }
+        }
+
+        /* --- Premium Buttons --- */
+        .btn-gold {
+            background: transparent; 
+            border: 2px solid transparent; 
+            background-image: var(--gradient-gold); 
+            background-origin: border-box;
+            background-clip: content-box, border-box; 
+            color: #000; 
+            font-family: 'Cinzel';
+            padding: 18px 50px; 
+            cursor: pointer; 
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-weight: 500; 
+            font-size: 1.1rem;
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 50px; 
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-gold:hover { 
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.6);
+            background-position: 100% 0;
+            color: white;
+        }
+
+        .btn-gold:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            pointer-events: none;
+        }
+
+        /* --- Royal Timer --- */
+        .timer-container {
+            display: flex; 
+            justify-content: center; 
+            gap: 25px; 
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .timer-unit {
+            border: 2px solid var(--gold); 
+            padding: 25px; 
+            min-width: 120px; 
+            border-radius: 15px;
+            background: rgba(212, 175, 55, 0.05); 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-number { 
+            font-family: 'Cinzel'; 
+            font-size: 3rem; 
+            font-weight: 700; 
+            color: var(--gold);
+        }
+
+        .timer-label { 
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+            margin-top: 8px; 
+            letter-spacing: 2px; 
+        }
+
+        /* --- Star Map Enhancements --- */
+        #starCanvas {
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px; 
+            cursor: crosshair; 
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px; 
+            width: 100%; 
+            height: 500px; 
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
+
+        /* --- Enhanced Game Area --- */
+        #gameArea {
+            height: 400px; 
+            position: relative; 
+            overflow: hidden; 
+            border: 2px solid rgba(212, 175, 55, 0.3); 
+            border-radius: 20px;
+            background: rgba(0,0,0,0.4); 
+            backdrop-filter: blur(15px); 
+            margin-top: 30px;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--gold);
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+        }
+
+        .floating-heart:hover {
+            transform: scale(1.3) !important;
+        }
+
+        /* --- Memories Slideshow Area --- */
+        .memory-slide {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .memory-slide.active-slide {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .memory-display-box {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--gold);
+            border-radius: 15px;
+            padding: 40px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            box-shadow: inset 0 0 30px rgba(212,175,55,0.2);
+        }
+
+        /* --- Grand Proposal --- */
+        #proposal {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, black 70%);
+            z-index: 100000; 
+            display: none; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            backdrop-filter: blur(10px);
+        }
+
+        .proposal-title {
+            font-family: 'Cinzel'; 
+            font-size: 4.5rem; 
+            color: var(--gold); 
+            margin-bottom: 80px; 
+            text-shadow: 0 0 60px var(--gold); 
+            letter-spacing: 8px;
+            animation: glowPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from { text-shadow: 0 0 60px var(--gold), 0 0 100px var(--gold); }
+            to { text-shadow: 0 0 30px var(--gold), 0 0 60px rgba(212,175,55,0.5); }
+        }
+
+        /* --- Floating Elements --- */
+        .heart-float, .lantern-float { 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 99; 
+            animation: floatUpRoyal 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            filter: drop-shadow(0 10px 20px rgba(212, 175, 55, 0.5));
+        }
+
+        @keyframes floatUpRoyal {
+            0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+            100% { opacity: 0; transform: translateY(-120vh) rotate(720deg) scale(0.5); }
+        }
+
+        /* --- Eternal Seal --- */
+        .eternal-seal {
+            background: var(--gradient-gold); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+            font-family: 'Cinzel'; 
+            font-size: 3.5rem; 
+            font-weight: 700;
+            text-shadow: none; 
+            animation: sealGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes sealGlow {
+            0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(30deg) brightness(1.3); }
+        }
+
+        /* --- SEAL OF ETERNITY BUTTON STYLES --- */
+        .eternity-seal-container {
+            position: relative;
+            margin: 80px auto 0;
+            display: block;
+        }
+
+        #eternitySealBtn {
+            font-size: 1.5rem; 
+            padding: 30px 80px; 
+            border-width: 3px; 
+            box-shadow: 0 0 30px rgba(212,175,55,0.4);
+            position: relative;
+            overflow: visible;
+        }
+
+        #eternitySealBtn.locked {
+            background-image: none !important;
+            background: rgba(100, 100, 100, 0.3) !important;
+            border: 3px solid rgba(212, 175, 55, 0.2) !important;
+            color: rgba(255, 255, 255, 0.4) !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            pointer-events: none !important;
+        }
+
+        #eternitySealBtn.locked::after {
+            content: 'COMPLETE THE 12 HEARTS TRIAL FIRST';
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            color: var(--gold);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-family: 'Cinzel';
+            font-size: 1rem;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: sealPulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+
+        .hearts-lock-indicator {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 20, 147, 0.2);
+            border: 2px solid rgba(255, 20, 147, 0.5);
+            color: #ff1493;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+            z-index: 5;
+        }
+
+        /* --- Responsive Design Enhancements --- */
+        @media (max-width: 768px) {
+            .gold-input { width: 280px; }
+            .gold-input:focus { width: 320px; }
+            .vault-grid { grid-template-columns: 1fr; }
+            nav { flex-wrap: wrap; gap: 10px; justify-content: center; }
+            .proposal-title { font-size: 3rem; }
+            .timer-container { gap: 10px; }
+            .timer-unit { min-width: 80px; padding: 15px; }
+            .timer-number { font-size: 1.8rem; }
+            .card { padding: 40px 20px; }
+            h1 { font-size: 3rem !important; }
+            #eternitySealBtn.locked::after {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+                white-space: normal;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="vignette"></div>
+
+    <div id="lockScreen">
+        <div class="royal-crest">👑</div>
+        <h2 style="font-family: 'Cinzel'; letter-spacing: 15px; font-size: 2.2rem; margin-bottom: 40px; text-shadow: 0 0 30px var(--gold);">ROYAL ACCESS REQUIRED</h2>
+        <input type="text" id="passInput" class="gold-input" placeholder="08 December 2024" maxlength="20">
+        <button class="btn-gold" onclick="unlock()" style="margin-top: 40px; font-size: 1.2rem;">
+            <i class="fas fa-key"></i> Authenticate Eternal Bond
+        </button>
+        <p style="margin-top: 30px; opacity: 0.7; font-size: 1.1rem;">Enter the sacred date of our destiny</p>
+    </div>
+
+    <div id="letterPopup" class="letter-popup">
+        <i class="fas fa-times" style="position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; opacity: 0.7;" onclick="closeLetter()"></i>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fas fa-envelope-open-text" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+        </div>
+        <p id="letterContent" style="white-space: pre-line;"></p>
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid rgba(212,175,55,0.3);">
+            <p style="font-size: 1.4rem; font-style: italic;">— Your Eternal Devotee</p>
+        </div>
+    </div>
+
+    <div id="proposal">
+        <h1 class="proposal-title" id="proposalText">MY QUEEN LORENA</h1>
+        <div id="proposalActions">
+            <p style="font-family: 'Dancing Script'; font-size: 2.2rem; margin-bottom: 60px; max-width: 600px; line-height: 1.4; text-align: center;">
+                Through every trial, every star in the heavens, and every heartbeat of eternity...<br><br>
+                Will you be my forever Queen and walk this infinite journey with me?
+            </p>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                <button class="btn-gold" onclick="endGame(true)" style="padding: 22px 60px; font-size: 1.3rem;">
+                    <i class="fas fa-crown"></i> YES, FOREVER
+                </button>
+                <button class="btn-gold" id="noBtn" onmouseover="moveNo()" style="padding: 22px 60px; font-size: 1.3rem;">
+                    <i class="fas fa-heart-broken"></i> NO
+                </button>
+            </div>
+        </div>
+        <div id="finalMessage" style="display: none; text-align: center;">
+            <h1 class="eternal-seal" style="font-size: 7rem; margin-bottom: 40px;">ETERNITY SEALED</h1>
+            <p style="font-family: 'Dancing Script'; font-size: 2rem; margin-bottom: 60px;">
+                Lorena, you are my universe, my forever, my everything.
+            </p>
+            <div style="font-size: 1.5rem; opacity: 0.9;">
+                <p>December 8th, 2024 - The Day Destiny Found Us</p>
+                <p>Infinity + 1 ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
+        
+        <nav>
+            <button onclick="nav('home')" class="active-nav">
+                <i class="fas fa-throne"></i> Throne Room
+            </button>
+            <button onclick="nav('vault')">
+                <i class="fas fa-vault"></i> Vault of Vows
+            </button>
+            <button onclick="nav('constellation')">
+                <i class="fas fa-meteor"></i> Celestial Map
+            </button>
+            <button onclick="nav('destiny')">
+                <i class="fas fa-infinity"></i> Trial of Destiny
+            </button>
+            <button onclick="nav('memories')">
+                <i class="fas fa-memory"></i> Eternal Memories
+            </button>
+        </nav>
+
+        <div id="home" class="card active">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 60px;">
+                <div>
+                    <h1 style="font-family: 'Cinzel'; font-size: 5.5rem; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">Queen Lorena</h1>
+                    <p style="letter-spacing: 6px; color: var(--gold); font-size: 1.4rem; font-weight: 300;">THE ETERNAL REIGN OF LOVE</p>
+                </div>
+                <i class="fas fa-crown" style="font-size: 8rem; color: var(--gold); text-shadow: 0 0 50px var(--gold); filter: drop-shadow(0 20px 40px rgba(212,175,55,0.5));"></i>
+            </div>
+            
+            <div class="timer-container" id="timer">
+                </div>
+            
+            <button class="btn-gold" style="font-size: 1.2rem; padding: 22px 60px; margin-top: 20px;" onclick="releaseLantern()">
+                <i class="fas fa-lantern"></i> Release Eternal Lanterns
+            </button>
+            <p style="margin-top: 40px; opacity: 0.8; font-size: 1.2rem; font-style: italic;">
+                Every second with you is a treasure beyond measure
+            </p>
+        </div>
+
+        <div id="vault" class="card">
+            <h2 style="font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 20px; color: var(--gold);">The Sacred Vault of Vows</h2>
+            <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 10px;">Each sealed envelope contains a fragment of my eternal devotion to you.</p>
+            
+            <div class="vault-grid">
+                <div class="envelope" onclick="openLetter(0)">
+                    <i class="fas fa-sparkles"></i>
+                    <h4>The First Divine Spark</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">December 8th - When fate rewrote my destiny</p>
+                </div>
+                <div class="envelope" onclick="openLetter(1)">
+                    <i class="fas fa-crown"></i>
+                    <h4>Why My Queen?</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">The divine reasons you reign supreme</p>
+                </div>
+                <div class="envelope" onclick="openLetter(2)">
+                    <i class="fas fa-gem"></i>
+                    <h4>Our Celestial Future</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">Visions of our infinite journey together</p>
+                </div>
+                <div class="envelope" onclick="openLetter(3)">
+                    <i class="fas fa-infinity"></i>
+                    <h4>The Eternal Promise</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">My unbreakable oath to you forever</p>
+                </div>
+                <div class="envelope" onclick="openLetter(4)">
+                    <i class="fas fa-heart"></i>
+                    <h4>Your Magical Essence</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">What makes you utterly irreplaceable</p>
+                </div>
+                <div class="envelope" onclick="openLetter(5)">
+                    <i class="fas fa-sun"></i>
+                    <h4>Daily Devotion</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">My sacred promises for every tomorrow</p>
+                </div>
+                <div class="envelope" onclick="openLetter(6)">
+                    <i class="fas fa-moon"></i>
+                    <h4>Midnight Thoughts</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">When the world sleeps, I think of you</p>
+                </div>
+                <div class="envelope" onclick="openLetter(7)">
+                    <i class="fas fa-fire"></i>
+                    <h4>The Unfading Flame</h4>
+                    <p style="opacity: 0.8; font-style: italic; font-size: 0.9rem;">A love that burns brighter every single day</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="constellation" class="card">
+            <h2 style="font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 25px; color: var(--gold);">Celestial Love Map</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 30px;">
+                Click upon the cosmic canvas below to draw the constellations of our eternal connection.
+            </p>
+            
+            <div style="position: relative; width: 100%;">
+                <canvas id="starCanvas"></canvas>
+            </div>
+            
+            <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <button class="btn-gold" onclick="clearStars()">
+                    <i class="fas fa-broom"></i> Clear Heavens
+                </button>
+                <button class="btn-gold" onclick="createLoveConstellation()">
+                    <i class="fas fa-magic"></i> ✨ Magic Pattern
+                </button>
+            </div>
+            <p style="margin-top: 25px; opacity: 0.8; font-style: italic;">
+                Each star you draw binds our souls closer in the cosmos
+            </p>
+        </div>
+
+        <div id="destiny" class="card">
+            <h2 style="font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 25px; color: var(--gold);">Trial of Eternal Hearts</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                Capture the 12 sacred hearts floating in the void to prove your royal destiny and unlock the Seal of Eternity.
+            </p>
+            
+            <h3 id="gameScore" style="color: var(--gold); font-size: 3rem; font-family: 'Cinzel'; margin-bottom: 20px; text-shadow: 0 0 15px rgba(212,175,55,0.5);">0 / 12</h3>
+            
+            <div id="gameArea">
+                <div id="gameStartScreen" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">
+                    <button class="btn-gold" style="font-size: 1.3rem; padding: 25px 70px;" onclick="startGame()">
+                        <i class="fas fa-play"></i> Begin Sacred Trial
+                    </button>
+                </div>
+                </div>
+            <p style="margin-top: 30px; opacity: 0.8; font-size: 1.1rem; font-style: italic;">
+                Only the chosen Queen can complete this divine challenge and access the final seal.
+            </p>
+        </div>
+
+        <div id="memories" class="card">
+            <h2 style="font-family: 'Cinzel'; font-size: 3rem; margin-bottom: 25px; color: var(--gold);">Eternal Memory Vault</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 40px;">
+                Relive the sacred moments that forged our unbreakable bond.
+            </p>
+            
+            <div class="memory-display-box" id="memoryDisplayBox">
+                <div class="memory-slide active-slide" id="slide-0">
+                    <i class="fas fa-calendar-day" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-family: 'Cinzel'; font-size: 2rem; margin-bottom: 15px;">December 8th, 2024</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">The exact day the universe finally conspired to unite our souls forever. Time stood still.</p>
+                </div>
+                <div class="memory-slide" id="slide-1">
+                    <i class="fas fa-eye" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-family: 'Cinzel'; font-size: 2rem; margin-bottom: 15px;">The First Glance</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">That magical moment when our eyes locked and I knew immediately that you were my destiny.</p>
+                </div>
+                <div class="memory-slide" id="slide-2">
+                    <i class="fas fa-comments" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-family: 'Cinzel'; font-size: 2rem; margin-bottom: 15px;">Endless Conversations</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">When minutes turned into hours, and I realized I could listen to your voice for the rest of my life.</p>
+                </div>
+                <div class="memory-slide" id="slide-3">
+                    <i class="fas fa-infinity" style="font-size: 4rem; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h3 style="font-family: 'Cinzel'; font-size: 2rem; margin-bottom: 15px;">The Infinite Promise</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">The silent vow made in my heart that I would protect, cherish, and love you eternally.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
+                <button class="btn-gold" onclick="prevMemory()" style="padding: 15px 30px;">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="btn-gold" onclick="nextMemory()" style="padding: 15px 30px;">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="eternity-seal-container">
+            <div id="heartsLockIndicator" class="hearts-lock-indicator" style="display: none;">
+                <i class="fas fa-lock" style="margin-right: 8px;"></i> 
+                <span id="lockHeartsCount">0/12 HEARTS</span>
+            </div>
+            <button id="eternitySealBtn" onclick="openFinal()" class="btn-gold" style="font-size: 1.5rem; padding: 30px 80px; margin: 80px auto 0; display: block; border-width: 3px; box-shadow: 0 0 30px rgba(212,175,55,0.4);">
+                <i class="fas fa-gem"></i> OPEN SEAL OF ETERNITY
+            </button>
+        </div>
+        
+    </div>
+
+    <script>
+        /* =========================================================================
+           CONFIGURATION & DATA
+           ========================================================================= */
+        const startDate = new Date("2024-12-08T00:00:00");
+        
+        // Game state tracking
+        let heartsGameCompleted = false;
+        
+        // Expanded Vault Letters
+        const letters = [
+            `Lorena, my eternal Queen,\n\nOn December 8th, 2024, when our eyes first met, time itself paused. In that sacred moment, I felt the universe shift. Every star aligned, every heartbeat synchronized. You weren't just someone I met—you were the missing piece of my soul that I had been searching for across lifetimes.\n\nFrom that first spark, I knew my life would never be the same. You became my compass, my north star, my reason to believe in destiny.`,
+            
+            `Why you, Lorena? Because you possess a rare magic that defies explanation. Your laughter heals wounds I didn't know existed. Your gaze silences the chaos of the world. You make ordinary moments feel like poetry, and fleeting glances feel like eternity.\n\nYou are strength wrapped in grace, wisdom dressed in wonder, beauty that radiates from within. No one else could ever reign in my heart the way you do—you are my one true Queen.`,
+            
+            `I see our future painted across the heavens, Lorena. A home filled with our laughter echoing through sunlit rooms. Adventures to Paris under starlit skies, Tokyo's neon dreams, Santorini's endless blue. Building traditions that become our love language—midnight drives with your favorite songs, Sunday mornings with coffee and whispered dreams.\n\nI see gray hair and wrinkled hands still intertwined, eyes that still sparkle with the same fire, hearts that beat as one rhythm through every season of life.`,
+            
+            `This is my eternal promise to you, my Queen:\n\nI vow to be your unwavering shield through every storm, your greatest cheerleader in every triumph. I promise to choose you every morning, to fight for us with every breath, to love you fiercely through every trial and tenderly through every joy.\n\nYou are my greatest honor, my highest privilege, my forever destiny.`,
+            
+            `Your essence, Lorena, is pure magic. The way your eyes light up when you talk about your passions. How you remember the smallest details about people. Your unshakeable loyalty to those you love. The quiet strength you carry so gracefully.\n\nYou have this supernatural ability to make people feel seen, valued, cherished. You turn fleeting moments into memories that last forever. You are a living poem, a walking miracle, a Queen in every sense of the word.`,
+            
+            `Every day, I promise to:\n• Wake up grateful you're mine\n• Make you laugh until your cheeks hurt\n• Hold you through every fear and doubt\n• Celebrate every victory, no matter how small\n• Pray for your dreams as if they were my own\n• Love you more fiercely with every sunrise\n\nYou are my daily devotion, my sacred ritual, my reason to believe in forever.`,
+
+            `When the midnight hour strikes and the world is completely silent, my mind inevitably drifts to you. I trace the outline of your smile in my thoughts. I replay our conversations like my favorite melody. Even in sleep, my soul seeks out yours. You are my first thought in the morning and my last thought before I dream.`,
+
+            `Like a flame that never wavers in the wind, my love for you only grows stronger. Time is powerless against what we have. With every passing day, the roots of my affection dig deeper into my soul. You are not a fleeting spark, Lorena; you are the eternal inferno that keeps my heart alive.`
+        ];
+
+        /* =========================================================================
+           ETERNITY SEAL LOCK SYSTEM
+           ========================================================================= */
+        function updateEternitySealStatus(heartsCaught = 0) {
+            const sealBtn = document.getElementById('eternitySealBtn');
+            const lockIndicator = document.getElementById('heartsLockIndicator');
+            const lockCount = document.getElementById('lockHeartsCount');
+            
+            lockCount.textContent = `${heartsCaught}/12 HEARTS`;
+            
+            if (heartsCaught < 12) {
+                // Lock the seal
+                sealBtn.classList.add('locked');
+                lockIndicator.style.display = 'block';
+                heartsGameCompleted = false;
+            } else {
+                // Unlock the seal
+                sealBtn.classList.remove('locked');
+                lockIndicator.style.display = 'none';
+                heartsGameCompleted = true;
+                
+                // Special unlock celebration
+                confetti({
+                    particleCount: 100,
+                    spread: 120,
+                    origin: { y: 0.8 },
+                    colors: ['#d4af37', '#ff1493', '#ffffff']
+                });
+            }
+        }
+
+        /* =========================================================================
+           BACKGROUND CANVAS SYSTEM
+           ========================================================================= */
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgParticles = [];
+        let bgStars = [];
+
+        function initBackground() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            
+            // Generate Golden Floating Particles
+            for(let i = 0; i < 150; i++) {
+                bgParticles.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    r: Math.random() * 3 + 1,
+                    dy: Math.random() * 0.8 + 0.2, // Drift speed
+                    glow: Math.random() * 0.5 + 0.5
+                });
+            }
+            
+            // Generate Twinkling Stars
+            for(let i = 0; i < 200; i++) {
+                bgStars.push({
+                    x: Math.random() * bgCanvas.width,
+                    y: Math.random() * bgCanvas.height,
+                    r: Math.random() * 1.5,
+                    twinkleOffset: Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function drawBackground() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            
+            // Render Background Stars
+            bgStars.forEach(star => {
+                const currentOpacity = 0.4 + 0.4 * Math.sin(Date.now() * 0.001 + star.twinkleOffset);
+                bgCtx.save();
+                bgCtx.globalAlpha = currentOpacity;
+                bgCtx.fillStyle = '#ffffff';
+                bgCtx.shadowBlur = 8;
+                bgCtx.shadowColor = '#d4af37';
+                bgCtx.beginPath();
+                bgCtx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                bgCtx.fill();
+                bgCtx.restore();
+            });
+            
+            // Render Golden Drifting Particles
+            bgParticles.forEach(particle => {
+                bgCtx.save();
+                bgCtx.globalAlpha = particle.glow;
+                bgCtx.fillStyle = `rgba(212, 175, 55, ${particle.glow})`;
+                bgCtx.shadowBlur = 15;
+                bgCtx.shadowColor = '#d4af37';
+                bgCtx.beginPath();
+                bgCtx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+                bgCtx.fill();
+                bgCtx.restore();
+                
+                // Move particle up
+                particle.y -= particle.dy;
+                // Reset if it goes off screen
+                if (particle.y < 0) particle.y = bgCanvas.height;
+            });
+            
+            requestAnimationFrame(drawBackground);
+        }
+
+        // Initialize and handle resizing
+        window.addEventListener('resize', () => {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        });
+        initBackground();
+        drawBackground();
+
+        /* =========================================================================
+           ROYAL LOCK SCREEN LOGIC
+           ========================================================================= */
+        function unlock() {
+            const inputField = document.getElementById('passInput');
+            const userInput = inputField.value.toLowerCase().trim();
+            const correctPasswords = [
+                "8 december", "8 december 2024", "08 december", 
+                "08 december 2024", "december 8", "december 8 2024"
+            ];
+            
+            // Check if input is valid
+            if (correctPasswords.some(pwd => userInput.includes(pwd))) {
+                // Animate lock screen away
+                gsap.to('#lockScreen', {
+                    y: '-100%',
+                    duration: 2,
+                    ease: 'power4.out',
+                    onComplete: () => {
+                        document.getElementById('mainContent').style.display = 'block';
+                        gsap.from('#mainContent', { 
+                            opacity: 0, 
+                            y: 100, 
+                            duration: 1.5, 
+                            ease: 'power4.out' 
+                        });
+                        startEternalTimer();
+                        triggerUnlockConfetti();
+                        // Initialize seal lock status
+                        updateEternitySealStatus(0);
+                    }
+                });
+            } else {
+                // Visual feedback for wrong password
+                shakeElement('#passInput');
+            }
+        }
+
+        function shakeElement(selector) {
+            gsap.to(selector, {
+                x: 10, 
+                rotation: 2, 
+                duration: 0.1,
+                yoyo: true, 
+                repeat: 6,
+                ease: 'power2.inOut'
+            });
+        }
+
+        function triggerUnlockConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 120,
+                origin: { y: 0.6 },
+                colors: ['#d4af37', '#ffffff', '#f7d794']
+            });
+        }
+
+        /* =========================================================================
+           NAVIGATION SYSTEM
+           ========================================================================= */
+        function nav(targetId) {
+            // Hide all cards
+            const allCards = document.querySelectorAll('.card');
+            allCards.forEach(card => {
+                card.classList.remove('active');
+                gsap.to(card, { opacity: 0, y: 30, duration: 0.5 });
+            });
+            
+            // Update button styling
+            const allButtons = document.querySelectorAll('nav button');
+            allButtons.forEach(btn => btn.classList.remove('active-nav'));
+            event.currentTarget.classList.add('active-nav');
+            
+            // Show target card
+            const targetCard = document.getElementById(targetId);
+            targetCard.classList.add('active');
+            gsap.fromTo(targetCard, 
+                { opacity: 0, y: 30 }, 
+                { opacity: 1, y: 0, duration: 1, ease: 'power4.out' }
+            );
+
+            // Special Handler: If opening map, ensure canvas sizing is correct
+            if (targetId === 'constellation') {
+                setTimeout(resizeStarCanvas, 100);
+            }
+        }
+
+        /* =========================================================================
+           THE ETERNAL TIMER
+           ========================================================================= */
+        function startEternalTimer() {
+            setInterval(() => {
+                const now = new Date();
+                const difference = now - startDate;
+                
+                // Calculate time units
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 / 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+                
+                // Update DOM elements
+                const timerElement = document.getElementById('timer');
+                if (timerElement) {
+                    timerElement.innerHTML = `
+                        <div class="timer-unit">
+                            <div class="timer-number">${days}</div>
+                            <div class="timer-label">DAYS</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-number">${hours}</div>
+                            <div class="timer-label">HOURS</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-number">${minutes}</div>
+                            <div class="timer-label">MINUTES</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-number">${seconds}</div>
+                            <div class="timer-label">SECONDS</div>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        // Throne Room Lantern Release Function
+        function releaseLantern() {
+            confetti({
+                particleCount: 50,
+                angle: 90,
+                spread: 90,
+                origin: { y: 0.9 },
+                colors: ['#ffb6c1', '#d4af37', '#ffffff']
+            });
+        }
+
+        /* =========================================================================
+           VAULT OF VOWS (LETTERS LOGIC)
+           ========================================================================= */
+        function openLetter(index) {
+            const contentElement = document.getElementById('letterContent');
+            if(letters[index]) {
+                contentElement.innerText = letters[index];
+                document.getElementById('letterPopup').style.display = 'block';
+            }
+        }
+
+        function closeLetter() {
+            document.getElementById('letterPopup').style.display = 'none';
+        }
+
+        /* =========================================================================
+           CELESTIAL MAP SYSTEM (INTERACTIVE)
+           ========================================================================= */
+        const starCanvas = document.getElementById('starCanvas');
+        const starCtx = starCanvas.getContext('2d');
+        let userConstellation = []; // Stores user-clicked coordinates
+
+        function resizeStarCanvas() {
+            // Fixes blurred canvas issues and sizes to parent
+            if (starCanvas.offsetParent !== null) {
+                const rect = starCanvas.parentElement.getBoundingClientRect();
+                starCanvas.width = rect.width;
+                starCanvas.height = 500; // Fixed height per CSS
+                renderConstellation();
+            }
+        }
+        window.addEventListener('resize', resizeStarCanvas);
+
+        // Click Event Listener for Drawing
+        starCanvas.addEventListener('click', (event) => {
+            const rect = starCanvas.getBoundingClientRect();
+            // Calculate accurate mouse coordinates relative to canvas
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            userConstellation.push({x: x, y: y});
+            renderConstellation();
+        });
+
+        function renderConstellation() {
+            starCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+            
+            // 1. Draw Cosmic Connecting Lines
+            if (userConstellation.length > 1) {
+                starCtx.beginPath();
+                starCtx.strokeStyle = 'rgba(212, 175, 55, 0.6)'; // Translucent Gold
+                starCtx.lineWidth = 2;
+                starCtx.moveTo(userConstellation[0].x, userConstellation[0].y);
+                
+                for (let i = 1; i < userConstellation.length; i++) {
+                    starCtx.lineTo(userConstellation[i].x, userConstellation[i].y);
+                }
+                starCtx.stroke();
+            }
+
+            // 2. Draw the Glowing Stars at Click Points
+            userConstellation.forEach(star => {
+                starCtx.beginPath();
+                starCtx.arc(star.x, star.y, 5, 0, Math.PI * 2);
+                starCtx.fillStyle = '#ffffff'; // White core
+                starCtx.shadowBlur = 15;
+                starCtx.shadowColor = '#d4af37'; // Gold glow
+                starCtx.fill();
+            });
+        }
+
+        function clearHeavens() {
+            userConstellation = [];
+            renderConstellation();
+        }
+        // Alias function for HTML call
+        function clearStars() { clearHeavens(); }
+
+        function createLoveConstellation() {
+            userConstellation = [];
+            const w = starCanvas.width;
+            const h = starCanvas.height;
+            const cx = w / 2;
+            const cy = h / 2 + 30; // Shift down slightly
+            
+            // Scale based on canvas size to keep heart proportional
+            const scale = Math.min(w, h) / 35; 
+
+            // Parametric Equation to draw a perfect heart outline
+            for (let t = 0; t <= Math.PI * 2; t += 0.2) {
+                const x = cx + scale * (16 * Math.pow(Math.sin(t), 3));
+                const y = cy - scale * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+                userConstellation.push({x: x, y: y});
+            }
+            
+            // Push first point again to close the shape
+            userConstellation.push(userConstellation[0]);
+            renderConstellation();
+        }
+
+        /* =========================================================================
+           TRIAL OF DESTINY (MINI-GAME LOGIC)
+           ========================================================================= */
+        let gameActive = false;
+        let heartsCaught = 0;
+        const totalHearts = 12;
+        let activeHeartIntervals = [];
+
+        function startGame() {
+            if (gameActive) return;
+            
+            document.getElementById('gameStartScreen').style.display = 'none';
+            gameActive = true;
+            heartsCaught = 0; // Reset hearts count for new game
+            updateScoreDisplay();
+            updateEternitySealStatus(heartsCaught); // Update seal status
+            
+            const gameArea = document.getElementById('gameArea');
+            
+            // Clear any existing hearts/intervals
+            activeHeartIntervals.forEach(interval => clearInterval(interval));
+            activeHeartIntervals = [];
+            gameArea.innerHTML = ''; // Clear game area
+            
+            // Spawn 12 hearts at intervals
+            for (let i = 0; i < totalHearts; i++) {
+                setTimeout(() => spawnHeart(gameArea), i * 600);
+            }
+        }
+
+        function spawnHeart(container) {
+            if (heartsCaught >= totalHearts) return;
+
+            const heart = document.createElement('i');
+            heart.className = 'fas fa-heart floating-heart';
+            
+            // Random initial position within bounds
+            const maxX = container.clientWidth - 40;
+            const maxY = container.clientHeight - 40;
+            let xPos = Math.random() * maxX;
+            let yPos = Math.random() * maxY;
+            
+            heart.style.left = `${xPos}px`;
+            heart.style.top = `${yPos}px`;
+            
+            // Movement parameters
+            let dx = (Math.random() - 0.5) * 4; // Velocity X
+            let dy = (Math.random() - 0.5) * 4; // Velocity Y
+
+            container.appendChild(heart);
+
+            // Animate Heart Bouncing
+            const movement = setInterval(() => {
+                xPos += dx;
+                yPos += dy;
+
+                // Bounce off walls
+                if (xPos <= 0 || xPos >= container.clientWidth - 30) dx *= -1;
+                if (yPos <= 0 || yPos >= container.clientHeight - 30) dy *= -1;
+
+                heart.style.left = `${xPos}px`;
+                heart.style.top = `${yPos}px`;
+            }, 30);
+            
+            activeHeartIntervals.push(movement);
+
+            // Click Event to Catch Heart
+            heart.addEventListener('click', () => {
+                clearInterval(movement);
+                heart.remove();
+                catchHeart();
+            });
+        }
+
+        function catchHeart() {
+            heartsCaught++;
+            updateScoreDisplay();
+            updateEternitySealStatus(heartsCaught); // Update seal status on each heart
+            
+            // Play tiny confetti per heart caught
+            confetti({
+                particleCount: 15,
+                spread: 40,
+                origin: { y: 0.8 },
+                colors: ['#ff1493', '#d4af37']
+            });
+
+            // Check Win Condition
+            if (heartsCaught >= totalHearts) {
+                gameActive = false;
+                triggerGameWin();
+            }
+        }
+
+        function updateScoreDisplay() {
+            document.getElementById('gameScore').innerText = `${heartsCaught} / ${totalHearts}`;
+        }
+
+        function triggerGameWin() {
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = `
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%;">
+                    <i class="fas fa-crown" style="font-size: 5rem; color: var(--gold); margin-bottom: 20px;"></i>
+                    <h2 style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--gold);">TRIAL COMPLETE</h2>
+                    <p style="font-size: 1.2rem; margin-top: 10px;">You are truly the chosen Queen. The Seal of Eternity is now unlocked!</p>
+                    <button class="btn-gold" onclick="startGame()" style="margin-top: 20px; padding: 12px 30px; font-size: 1rem;">
+                        <i class="fas fa-redo"></i> Play Again
+                    </button>
+                </div>
+            `;
+            
+            // Highlight score in gold
+            const scoreDisplay = document.getElementById('gameScore');
+            scoreDisplay.style.color = "#fff";
+            scoreDisplay.style.textShadow = "0 0 30px var(--gold)";
+            
+            // Victory Confetti burst
+            confetti({
+                particleCount: 200,
+                spread: 160,
+                origin: { y: 0.6 },
+                colors: ['#d4af37', '#fff', '#f7d794']
+            });
+        }
+
+        /* =========================================================================
+           ETERNAL MEMORIES (SLIDESHOW LOGIC)
+           ========================================================================= */
+        let currentSlide = 0;
+        const totalSlides = 4; // Matches the 4 HTML slides
+
+        function updateSlideDisplay() {
+            // Hide all slides
+            for(let i = 0; i < totalSlides; i++) {
+                const slide = document.getElementById(`slide-${i}`);
+                if (slide) slide.classList.remove('active-slide');
+            }
+            // Show current slide
+            const activeSlide = document.getElementById(`slide-${currentSlide}`);
+            if (activeSlide) activeSlide.classList.add('active-slide');
+        }
+
+        function nextMemory() {
+            currentSlide++;
+            if(currentSlide >= totalSlides) {
+                currentSlide = 0; // Loop back to start
+            }
+            updateSlideDisplay();
+        }
+
+        function prevMemory() {
+            currentSlide--;
+            if(currentSlide < 0) {
+                currentSlide = totalSlides - 1; // Loop to end
+            }
+            updateSlideDisplay();
+        }
+
+        /* =========================================================================
+           GRAND PROPOSAL CEREMONY
+           ========================================================================= */
+        function openFinal() {
+            // Check if hearts trial is completed before allowing access
+            if (!heartsGameCompleted) {
+                // Shake the button and show warning
+                shakeElement('#eternitySealBtn');
+                confetti({
+                    particleCount: 50,
+                    angle: 270,
+                    spread: 60,
+                    origin: { x: 0.5, y: 0.9 },
+                    colors: ['#ff4444']
+                });
+                return;
+            }
+            
+            // Display the proposal overlay only if trial completed
+            document.getElementById('proposal').style.display = 'flex';
+        }
+
+        function endGame(isAccepted) {
+            if (isAccepted) {
+                // Hide interactive elements
+                document.getElementById('proposalActions').style.display = 'none';
+                document.getElementById('proposalText').style.display = 'none';
+                
+                // Show final eternal message
+                document.getElementById('finalMessage').style.display = 'block';
+                
+                // Trigger Massive Eternal Celebration (15 second fireworks)
+                const duration = 15 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { 
+                    startVelocity: 30, 
+                    spread: 360, 
+                    ticks: 60, 
+                    zIndex: 1000000 
+                };
+
+                const interval = setInterval(function() {
+                    const timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { 
+                        particleCount, 
+                        origin: { x: Math.random(), y: Math.random() - 0.2 },
+                        colors: ['#d4af37', '#ff1493', '#ffffff'] 
+                    }));
+                }, 250);
+            }
+        }
+
+        // The cheeky "No" button evasive maneuver
+        function moveNo() {
+            const noButton = document.getElementById('noBtn');
+            noButton.style.position = 'absolute';
+            // Teleport to a random position between 10% and 90% of screen bounds
+            noButton.style.top = Math.random() * 80 + 10 + '%';
+            noButton.style.left = Math.random() * 80 + 10 + '%';
+        }
+
+        // Initialize seal lock status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateEternitySealStatus(0);
+        });
+    </script>
+</body>
+</html>
